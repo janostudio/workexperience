@@ -1,0 +1,162 @@
+<style>
+.side-catalog{
+	position: relative;
+}
+.side-catalog a{
+	color: #888;
+}
+.catalog-side-bar{
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 353px;
+    background-color: #eaeaea;
+    border: 1px solid #eaeaea;
+    border-top: 0;
+    border-bottom: 0;
+    left: 5px;
+}
+.catalog-side-bar:before{
+	display: block;
+    border: 2px solid #eaeaea;
+    width: 16px;
+    height: 16px;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    background-color: #fff;	
+}
+.catalog-side-bar:after{
+	display: block;
+    border: 2px solid #eaeaea;
+    width: 16px;
+    height: 16px;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    bottom: -8px;
+    background-color: #fff;	
+}
+.catalog-list{
+	position: relative;
+}
+.catalog-title{
+	position: relative;
+    padding: 15px 0px 0px 40px;
+}
+.catalog-title a:before{
+	content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    position: absolute;
+    left: 0px;
+    border: 2px solid #fff;
+    top: 18px;	
+}
+.catalog-title a.active,.catalog-title a:hover{
+	color:#444;
+}
+.catalog-title a:hover:before{
+	background-color: #e6454a;
+}
+.catalog-arrow{
+    display: block;
+    width: 16px;
+    height: 12px;
+    background-color: #e6454a;
+    position: absolute;
+    left: -2px;
+    top: 18px;
+}
+.catalog-arrow:after{
+    display: block;
+    content: "";
+    border-left: 8px solid #e6454a;
+    border-top: 6px solid transparent;
+    position: absolute;
+    left: 16px;
+    height: 12px;
+    border-bottom: 6px solid transparent;
+}
+</style>
+<body>
+<div class="side-catalog">
+										<div class="catalog-side-bar"></div>
+										<div>
+											<dl class="catalog-list">
+												<dt class="catalog-title">
+													<a href="#grxx" class="active" class="title-link">
+														个人信息
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#dyfz" class="title-link">
+														党员发展
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#dyzy" class="title-link">
+														党员转移
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#cnjn" class="title-link">
+														承诺践诺
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#pxls" class="title-link">
+														评星历史
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#czxx" class="title-link">
+														处置信息
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#dfjn" class="title-link">
+														党费缴纳
+													</a>
+												</dt>
+												<dt class="catalog-title">
+													<a href="#dyjf" class="title-link">
+														党员积分
+													</a>
+												</dt>
+												<a class="catalog-arrow" href="javascript:void(0);"></a>
+											</dl>
+										</div>
+									</div>
+</body>
+<script>
+	  $(".catalog-title").on("click",function(){
+		  var ind = $(this).index();
+		  $(".catalog-list a").removeClass("active");
+		  $(this).find("a").addClass("active");
+		  $(".catalog-arrow").animate({"top":(18+ind*33)+"px"});
+		  var ii = $(this).find("a").attr("href")
+		  if(ind<6){
+			  $(".side-catalog").css("top",$(ii).position().top);
+		  }else{
+			  $(".side-catalog").css("top",1485);
+		  }
+		  
+	  })
+	  $(window).on("scroll",function(){
+		  var st = $(window).scrollTop();
+		  if(st > 200 && st < 1675){
+			  $(".side-catalog").css("top",st-200);
+		  }
+	  })
+	  $(".wrap-fluid").on("DOMNodeRemoved",function(){
+		  $(".wrap-fluid").off("DOMNodeRemoved");
+		  $(window).off("scroll");
+	  })
+</script>
