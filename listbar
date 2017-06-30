@@ -87,53 +87,53 @@
 </style>
 <body>
 <div class="side-catalog">
-										<div class="catalog-side-bar"></div>
-										<div>
-											<dl class="catalog-list">
-												<dt class="catalog-title">
-													<a href="#grxx" class="active" class="title-link">
-														个人信息
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#dyfz" class="title-link">
-														党员发展
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#dyzy" class="title-link">
-														党员转移
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#cnjn" class="title-link">
-														承诺践诺
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#pxls" class="title-link">
-														评星历史
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#czxx" class="title-link">
-														处置信息
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#dfjn" class="title-link">
-														党费缴纳
-													</a>
-												</dt>
-												<dt class="catalog-title">
-													<a href="#dyjf" class="title-link">
-														党员积分
-													</a>
-												</dt>
-												<a class="catalog-arrow" href="javascript:void(0);"></a>
-											</dl>
-										</div>
-									</div>
+	<div class="catalog-side-bar"></div>
+	<div>
+		<dl class="catalog-list">
+			<dt class="catalog-title">
+				<a href="#grxx" class="active" class="title-link">
+					个人信息
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#dyfz" class="title-link">
+					党员发展
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#dyzy" class="title-link">
+					党员转移
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#cnjn" class="title-link">
+					承诺践诺
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#pxls" class="title-link">
+					评星历史
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#czxx" class="title-link">
+					处置信息
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#dfjn" class="title-link">
+					党费缴纳
+				</a>
+			</dt>
+			<dt class="catalog-title">
+				<a href="#dyjf" class="title-link">
+					党员积分
+				</a>
+			</dt>
+			<a class="catalog-arrow" href="javascript:void(0);"></a>
+		</dl>
+	</div>
+</div>
 </body>
 <script>
 	  $(".catalog-title").on("click",function(){
