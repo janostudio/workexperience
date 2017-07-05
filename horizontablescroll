@@ -1,0 +1,131 @@
+/*
+ * 需求：表格左侧不动，横向滚动右侧
+ * 思路：做两个表格，顶部定位fixed，覆盖底部表格，滚动部分在底部表格；
+ *      且用js监听底部表格在屏幕的位置。
+ */
+<style>
+.sptd{
+	width: 50px;
+}
+#tfir tbody>tr:not(:nth-child(1))>td{
+	background-color: #fff;
+}
+</style>
+
+<section id="tw" style="width: 100%;overflow-x: auto;padding-bottom:10px;">
+  <!-- 顶部遮盖表格 -->
+  <table id="tfir" style="position: fixed;" class="table table-bordered table-brand table-special">
+        <tbody class="normal-wrap">
+            <tr style="background-color:#f5f5f5;">
+                <td colspan="1"><strong>序号</strong></td>
+                <td colspan="3" style="text-align: left;"><strong>创建举措</strong></td>
+                <td colspan="1"><strong>活动频次</strong></td>
+                <td colspan="4"><strong>任务标题</strong></td>
+                <td colspan="2"><strong>负责人</strong></td>
+            </tr>
+            <tr>
+              <td colspan="1">1</td>
+              <td colspan="3" style="text-align:left;"> 创建举措标题 </td>
+              <td colspan="1">
+                1meiyueyici
+              </td>
+              <td colspan="4"> 任务标题 </td>
+              <td colspan="2"> 负责人 </td>
+            </tr>
+            <tr>
+              <td colspan="1">1</td>
+              <td colspan="3" style="text-align:left;"> 创建举措标题 </td>
+              <td colspan="1">
+                1meiyueyici
+              </td>
+              <td colspan="4"><a href="#"> 分配任务 </a></td>
+              <td colspan="2"> 负责人 </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- 底部月份表格 -->
+  <table id="tsec" class="table table-bordered table-brand table-special">
+        <tbody class="normal-wrap">
+            <tr style="background-color:#f5f5f5;">
+                <td class="sptd"><strong>序号</strong></td>
+                <td colspan="2" style="text-align: left;"><strong>创建举措</strong></td>
+                <td colspan="1"><strong>活动频次</strong></td>
+                <td colspan="3"><strong>任务标题</strong></td>
+                <td colspan="1"><strong>负责人</strong></td>
+                <td class="sptd"><strong>7 月</strong></td>
+                <td class="sptd"><strong>6 月</strong></td>
+                <td class="sptd"><strong>5 月</strong></td>
+                <td class="sptd"><strong>4 月</strong></td>
+                <td class="sptd"><strong>3 月</strong></td>
+                <td class="sptd"><strong>2 月</strong></td>
+                <td class="sptd"><strong>1 月</strong></td>
+            </tr>
+            <tr>
+              <td class="sptd">1</td>
+              <td colspan="2" style="text-align:left;"> 创建举措标题 </td>
+              <td colspan="1">
+                1meiyueyici
+              </td>
+              <td colspan="3"> 任务标题 </td>
+              <td colspan="1"> 负责人 </td>
+              <td><a href="#">1</a></td>
+              <td><a href="#">2</a></td>
+              <td><a href="#">3</a></td>
+              <td><a href="#">4</a></td>
+              <td><a href="#">5</a></td>
+              <td><a href="#">7</a></td>
+              <td><a href="#">6</a></td>
+            </tr>
+            <tr>
+              <td class="sptd">1</td>
+              <td colspan="2" style="text-align:left;"> 创建举措标题 </td>
+              <td colspan="1">
+                1meiyueyici
+              </td>
+              <td colspan="3"><a href="#"> 任务标题 </a></td>
+              <td colspan="1"> 负责人 </td>
+              <td><a href="#">1</a></td>
+              <td><a href="#">2</a></td>
+              <td><a href="#">3</a></td>
+              <td><a href="#">4</a></td>
+              <td><a href="#">5</a></td>
+              <td><a href="#">7</a></td>
+              <td><a href="#">6</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+                                
+<script>
+$(function(){
+	/* 初始化 */
+	var num = $("#tsec tr:nth-child(1)").find("td").length;
+	if( num <= 9 ){
+		num=0;
+	}else{
+		num = num -9;
+	}
+	$("#tsec").css("width",parseInt($("#tw").css("width"))+num*50);
+	var t1 = parseInt($("#tsec tr:nth-child(1)>td:nth-child(1)").css("width"));
+	var t2 = parseInt($("#tsec tr:nth-child(1)>td:nth-child(2)").css("width"));
+	var t3 = parseInt($("#tsec tr:nth-child(1)>td:nth-child(3)").css("width"));
+	var t4 = parseInt($("#tsec tr:nth-child(1)>td:nth-child(4)").css("width"));
+	var t5 = parseInt($("#tsec tr:nth-child(1)>td:nth-child(5)").css("width"));
+	$("#tfir").css("width",t1+t2+t3+t4+t5);
+	$("#tfir").find("td:nth-child(1)").css("width",t1);
+	$("#tfir").find("td:nth-child(2)").css("width",t2);
+	$("#tfir").find("td:nth-child(3)").css("width",t3);
+	$("#tfir").find("td:nth-child(4)").css("width",t4);
+	$("#tfir").find("td:nth-child(5)").css("width",t5);
+	/* 监听事件  */
+	$(window).on("scroll",function(){
+	    var st = $("#tsec").offset().top - $(window).scrollTop()-10;
+	    $("#tfir").css("top",st);
+	})
+	$(".wrap-fluid").on("DOMNodeRemoved",function(){
+		$("#tfir").off("DOMNodeRemoved");
+		$(".wrap-fluid").off("DOMNodeRemoved");
+		$(window).off("scroll");
+	})
+})
+</script>
