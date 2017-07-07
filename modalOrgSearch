@@ -1,0 +1,79 @@
+/*
+ * 组织查询文本框的扩展弹出框查询
+ * 使用方法，$("input").modalOrgSearch();
+ */
+$.fn.modalOrgSearch = function(options){
+	var defaults = {
+		url : contextPath + '/partyorg/partyorg/partyorgtable'
+	}
+	if(!options){
+		options = {};
+	}
+	return $(this).each(function(){
+		var str = '<b title="弹出模式" class="fontawesome-flag comtr-sup" id="_orgsearchbtn"></b>'+
+				  '<div id="cbl" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="false">'+
+				  '	  <div class="modal-dialog">'+
+			      '		  <div class="modal-content">'+
+			      '           <div class="modal-header">'+
+			      '               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">'+
+			      '        	          <i class="icon entypo-cancel-circled" title="关闭"></i>'+
+			      '               </button>'+
+			      '               <h4 class="modal-title" id="myModalLabel">选择党组织</h4>'+
+			      '           </div>'+
+			      '           <div class="modal-body">'+
+			      '    	          <div class="input-group la-inline-group" style="margin-top: -20px;">'+
+			      '                   <label class="control-label">名称：</label>'+
+			      '                   <input type="text" id="orgSname" value="" class="la-input form-control input-sm">'+
+			      '                   <button class="btn btn-danger la-form-btn" type="button" id="_orgsearchS"><i class="fa fa-search"></i>查询</button>'+
+			      '               </div>'+
+			      '    	          <table id="_orgsearchbg" title="Folder Browser" class="easyui-treegrid" style="width:100%;height:auto;"></table> '+
+			      '               <div style="height:50px;"></div>'+
+			      '           </div>'+
+			      '           <div class="modal-footer mf">'+
+			      '    	          <button type="button" class="btn btn-danger" id="_orgsearchconfirm">确 认</button>'+
+			      '               <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>'+
+			      '           </div>'+
+			      '       </div>'+
+			      '    </div>'+
+			      '</div>';
+		$(this).after(str);
+		var times = 0;
+		$("#_orgsearchbtn").on("click",function(){
+			$("#cbl").modal("show");
+			// 数据选择
+		    $('#_orgsearchbg').treegrid({
+			    iconCls: 'icon-ok',
+			    rownumbers: true,
+			    url: options.url? options.url : defaults.url,   //访问后台的地址
+			    idField:'id',    
+			    treeField:'name', 
+			    fitColumns : false,
+			    columns:[[  
+			        {field:'name',title:'名称'},
+			        {field:'type',title:'组织属性',align:'center', formatter: function(value,row,index){
+			      	    return row.flag == '1' ? value : "机构";
+			        }}
+			    ]],
+			    onSelect: function(row){
+			    	if($("#omt").length == 0){
+			    		var str = '<div class="orgmodaltable">'+
+					              '    <span>选择结果</span>   '+                                        
+					       	      '    <span id="omt" onclick="this.remove()">'+row.name+' <b data-value="'+row.id+'" class="icon icon-cross"></b></span>'+
+					              '</div>';
+			    		$(".mf").before(str);
+			    	}else{
+			    		$("#omt").html(row.name+' <b data-value="'+row.id+'" class="icon icon-cross"></b>');
+			    	}
+			    }
+		    });
+		});
+		$("#_orgsearchconfirm").on("click",function(){
+			var org = $("#omt b").attr("data-value");
+			$('#cc').combotree('setValue', org);
+			$("#cbl").modal("hide");
+		});
+		$("#_orgsearchS").on("click",function(){
+			$('#_orgsearchbg').treegrid('reload', {sname:$("#orgSname").val()});
+		});
+	});
+}
