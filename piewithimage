@@ -1,0 +1,176 @@
+    // 可以使用graphic插入图片
+    var chart = echarts.init(document.getElementById("piechart")),
+	      done = "data:image/png;base64,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",
+	      good = "data:image/png;base64,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",
+	      bad = "data:image/png;base64,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";
+	  function getfix(data){
+	      return (data[0]/(data[0]+data[1])*100).toFixed(0);
+	  }
+	  var option = {
+	      series:[
+	          {
+	              name:"完成率",
+	              type:"pie",
+	              radius:["50%","60%"],
+	              center:["14%","50%"],
+	              avoidLabelOverlap: false,
+	              label:{
+	                  normal: {
+	                      show: false
+	                  },
+	              },
+	              labelLine:{
+	                  normal:{
+	                      show: false
+	                  }
+	              },
+	              silence: true,
+	              animation:false,
+	              data:data1,
+	              color:["#d9534f","#ccc"]
+	          },
+	          {
+	              name:"按时率",
+	              type:"pie",
+	              radius:["50%","60%"],
+	              center:["46%","50%"],
+	              avoidLabelOverlap: false,
+	              label:{
+	                  normal: {
+	                      show: false
+	                  },
+	              },
+	              labelLine:{
+	                  normal:{
+	                      show: false
+	                  }
+	              },
+	              silence: true,
+	              animation:false,
+	              data:data2,
+	              color:["#5cb85c","#ccc"]
+	          },
+	          {
+	              name:"逾期率",
+	              type:"pie",
+	              radius:["50%","60%"],
+	              center:["78%","50%"],
+	              avoidLabelOverlap: false,
+	              label:{
+	                  normal: {
+	                      show: false
+	                  },
+	              },
+	              labelLine:{
+	                  normal:{
+	                      show: false
+	                  }
+	              },
+	              silence: true,
+	              animation:false,
+	              data:data3,
+	              color:["#5ab1ef","#ccc"]
+	          }
+	      ],
+	      graphic:{
+	          elements:[
+	              {
+	                  type:'image',
+	                  style:{
+	                      image:done,
+	                      width:30,
+	                      height:30
+	                  },
+	                  left: "12%",
+	                  top: "center"
+	              },
+	              {
+	                  type:'image',
+	                  style:{
+	                      image:good,
+	                      width:30,
+	                      height:30
+	                  },
+	                  left: "44%",
+	                  top: "center"
+	              },
+	              {
+	                  type:'image',
+	                  style:{
+	                      image:bad,
+	                      width:30,
+	                      height:30
+	                  },
+	                  left: "76%",
+	                  top: "center"
+	              },
+	              {
+	                  type:'text',
+	                  style:{
+	                      text: getfix(data1)+"%",
+	                      font: '26px "STHeiti", sans-serif',
+	                      fill:"#d9534f",
+	                      textAlign:"center"
+	                  },
+	                  left: "26%",
+	                  top: "35%"
+	              },
+	              {
+	                  type:'text',
+	                  style:{
+	                      text: getfix(data2)+"%",
+	                      font: '26px "STHeiti", sans-serif',
+	                      fill:"#5cb85c",
+	                      textAlign:"center"
+	                  },
+	                  left: "58%",
+	                  top: "35%"
+	              },
+	              {
+	                  type:'text',
+	                  style:{
+	                      text: getfix(data3)+"%",
+	                      font: '26px "STHeiti", sans-serif',
+	                      fill:"#5ab1ef",
+	                      textAlign:"center"
+	                  },
+	                  left: "90%",
+	                  top: "35%"
+	              },
+	              {
+	                  type:'text',
+	                  style:{
+	                      text: "完成率",
+	                      font: '16px "STHeiti", sans-serif',
+	                      fill:"#d9534f",
+	                      textAlign:"center"
+	                  },
+	                  left: "26%",
+	                  top: "55%"
+	              },
+	              {
+	                  type:'text',
+	                  style:{
+	                      text: "按时率",
+	                      font: '16px "STHeiti", sans-serif',
+	                      fill:"#5cb85c",
+	                      textAlign:"center"
+	                  },
+	                  left: "58%",
+	                  top: "55%"
+	              },
+	              {
+	                  type:'text',
+	                  style:{
+	                      text: "逾期率",
+	                      font: '16px "STHeiti", sans-serif',
+	                      fill:"#5ab1ef",
+	                      textAlign:"center"
+	                  },
+	                  left: "90%",
+	                  top: "55%"
+	              }
+	          ]
+	      }
+	  } 
+	  chart.setOption(option);
