@@ -1,0 +1,17 @@
+/*
+ * 多页面网站，某个服务由确定入口页面进入至此服务的首页，此服务多个页面点击返回时，均返回入口页面
+ */
+ 
+ // 入口页面，清楚localStorage字段
+ localStorage.removeItem("rankpoint");
+ // 服务的各个页面，会在第一次进入服务首页时设置localStorage字段
+ function pointHistory(){
+		if(!localStorage.rankpoint){
+			localStorage.rankpoint = history.length;
+		}else{
+			history.pushState(null, null, "#");
+			window.addEventListener("popstate", function(e) { 
+				history.go(localStorage.rankpoint - history.length);
+			}, false);  
+		}
+	}
