@@ -15,3 +15,6 @@ easyui的treegrid基础上的jquery插件
 
 5. preventWechatWindowSlide
 阻止微信页面滑动，但页面内仍可以滚动。
+
+6. img_lazyload
+图片缓加载
