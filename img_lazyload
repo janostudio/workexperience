@@ -1,0 +1,32 @@
+$(function () {
+    var size = $(".img img").length;
+    var imgArr = new Array();
+    var cur = 0;
+    for (var i = 0; i < size; i++) {
+        imgArr.push($(".img img")[i].src);
+    }
+    var pWidth = $("#inner").width();
+    for (var i = 0; i < size; i++) {
+        loadImg(imgArr[i], function () {
+            cur = cur + 1;
+            var process = cur / size;
+            $("#inner span").css({
+                "display": "block",
+                "background": "yellow",
+                "width": pWidth * process,
+            }).text(Math.ceil(process * 100) + "%")
+            console.log($("#inner span").width())
+            if ($("#inner span").width() == pWidth) {
+                $("#loading").remove();
+            }
+        })
+    }
+    console.log($("#inner span").width())
+    function loadImg(url, callback) {
+        var img = new Image();
+        img.src = url;
+        img.onload = function () {
+            callback.call(img);
+        }
+    };
+})
