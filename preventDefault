@@ -1,0 +1,6 @@
+IE9不支持，因此要做兼容判断
+
+var event = event || window.event;  //用于IE
+if(event.preventDefault) event.preventDefault();  //标准技术
+if(event.returnValue) event.returnValue = false;  //IE
+
